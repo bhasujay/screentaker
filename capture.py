@@ -1,8 +1,8 @@
 import threading
-import time
+from time import sleep
 from PIL import ImageGrab
 import hashlib
-
+    
 
 class CaptureManager:
 
@@ -11,7 +11,6 @@ class CaptureManager:
         self.image_count = 0
         self.thread = None
         self.capturing = False
-        self.lock = threading.Lock()
         self.last_image = None  
 
     def listen_to_clipboard(self):
@@ -29,7 +28,7 @@ class CaptureManager:
                     self.image_list.append(img)
                     self.image_count += 1
                     self.last_image = img
-            time.sleep(1)
+            sleep(0.5)
 
     def _images_are_equal(self, img1, img2):
         hash1 = hashlib.md5(img1.tobytes()).hexdigest()
@@ -39,10 +38,11 @@ class CaptureManager:
 
     def close_clipboard_listener(self):
         self.capturing = False
+        sleep(0.5)
         if self.thread is not None:
             self.thread.join()
             self.thread = None
 
     def __del__(self):
         self.image_list = []
-
+        self.last_image = None

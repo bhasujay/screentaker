@@ -14,15 +14,12 @@ def start_action():
     start_btn.configure(state="disabled")
 
 def stop_action():
-    #capture_manager.close_clipboard_listener()
+    capture_manager.close_clipboard_listener()
     status.configure(text=f"Status: captured {capture_manager.image_count} images")
     stop_btn.configure(state="disabled")
     render_btn.configure(state="normal")
-
     progress.configure(mode="indeterminate")
     progress.start()
-    
-    
 
 def render_action():
     global capture_manager  # Make sure to use the global variable
