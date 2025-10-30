@@ -1,10 +1,11 @@
 import customtkinter as ctk
-from capture import CaptureManager
+from capture import *
 from render import *
 from time import sleep
 
 # Capture Manager Instance
 capture_manager = CaptureManager()
+render_manager = RenderManager()
 
 # Button Actions
 def start_action():
@@ -25,7 +26,6 @@ def render_action():
     global capture_manager  # Make sure to use the global variable
     
     progress.set(0)
-    render_frame()
     status.configure(text="Status: Rendering...")
 
     total = capture_manager.image_count
@@ -38,7 +38,6 @@ def render_action():
     # Destroy and recreate the capture_manager object
     del capture_manager
     capture_manager = CaptureManager()
-    
 
 
 # Main Window
