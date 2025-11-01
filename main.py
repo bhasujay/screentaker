@@ -16,7 +16,7 @@ def start_action():
 
 def stop_action():
     capture_manager.close_clipboard_listener()
-    status.configure(text=f"Status: captured {capture_manager.image_count} images")
+    status.configure(text=f"Status: captured {capture_manager.shot_count} images")
     stop_btn.configure(state="disabled")
     render_btn.configure(state="normal")
     progress.configure(mode="indeterminate")
@@ -28,7 +28,7 @@ def render_action():
     progress.set(0)
     status.configure(text="Status: Rendering...")
 
-    total = capture_manager.image_count
+    total = capture_manager.shot_count
     for i in range(total):
         progress.set((i + 1) / total)
         root.update_idletasks()

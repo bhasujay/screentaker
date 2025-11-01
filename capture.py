@@ -12,7 +12,7 @@ class ScreenShot:
         self.image = image
         self.top_match_line = -1
         self.bottom_match_line = -1
-        self.rendered = False
+        self.valid = True
         self.id = ScreenShot.id
         
         ScreenShot.id += 1
